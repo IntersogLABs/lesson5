@@ -7,19 +7,19 @@
 
 Например 
 
-<ul>
-[[ each item in array ]]
- <li> [[item]] </li>
- [[/each]]
-</ul>
+       <ul>
+       [[ each item in array ]]
+        <li> [[item]] </li>
+        [[/each]]
+       </ul>
 
 при таком шаблоне и следующем вызове 
 template(templateStr, {array:[1,2,3,4]})
 должен быть следующий результат
 
-<ul>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-</ul>
+     <ul>
+     <li>1</li>
+     <li>2</li>
+     <li>3</li>
+     <li>4</li>
+     </ul>

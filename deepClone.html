@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Написать функцию deepClone, которая рекурсивно копирует объект по свойствам, если встречает свойство-вложенныйОбъект или массив -> входим в рекурсию
+		function deepClone (obj) {
+			if(!obj instanceof Object){//if not object return value
+				return obj;
+			}
+			if(Array.isArray(obj)){
+				var newObj = [];
+
+				for(var i = 0, length = obj.length; i < length; i++){
+					
+					if(obj[k] instanceof Object && typeof(obj[k])==="object"){// using typeof because function is instance of Object
+						newObj[i] = deepClone(obj[i]);
+
+					}
+					else{
+						newObj[i] = obj[i];
+					}
+				}	
+			}
+			else{
+				var newObj = {};
+				for(var k in obj){
+					if(!obj.hasOwnProperty(k)){
+						continue;
+					}
+					if(obj[k] instanceof Object && typeof(obj[k])==="object"){
+						newObj[k] = deepClone(obj[k]);
+
+					}
+					else{
+						newObj[k] = obj[k];
+					}
+				}	
+			}
+			
+			
+			return newObj;
+		}
+		
+		var obj = {
+			el22:null,
+			el33:function(){},
+			el1:"gsga",
+			el2:[3,4],
+			el3:{el:25,ell2:{ell4:5}}
+		}
+		var newObj = deepClone(obj);
+		console.log(newObj);
+		
+	</script>
+	
+</body>
+</html>

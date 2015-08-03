@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript">
+    var deep = function(obj){
+        var copy = null;
+        if(Array.isArray(obj)){
+            copy = obj.reduce(function(ac, it){
+                ac.push(deep(it));
+                return ac;
+            },[])
+        }
+        else if( "object" === typeof obj && obj instanceof Object){
+            copy = Object.getOwnPropertyNames(obj).reduce(function(newObj, it){
+                newObj[it] =  deep(obj[it])
+                return newObj
+            },{})
+        }
+        else{
+            copy = obj
+        }
+        return copy;
+    };
+    (function test(){
+        var subObj = {name:"Ivan",tel:5555, married:null};
+        var original = {age:33, person:subObj, pos:[1,2,3,4]};
+        var copy = deep(original);
+        console.log("copy ", copy);
+        subObj.tel = 53344;
+        subObj.temp = 0;
+        console.log("change subObj ", subObj);
+        console.log("now original ",original);
+        console.log("Copy still ", copy);
+    })(8,9,5,3);
+</script>
+<body>
+
+</body>
+</html>

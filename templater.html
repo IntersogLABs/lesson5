@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="template" id="listTemplate">
+    <ul>
+        [[ each item in array ]]
+        <li> [[item]] </li>
+        [[/each]]
+    </ul>
+</script>
+<script type="template" id="tableTemplate">
+    <table>
+        [[each row in matrix]]
+            <tr>
+                [[each col in row]]
+                    <td>[[col]]</td>
+                [[/each]]
+            </tr>
+        [[/each]]
+    </table>
+</script>
+<script type="text/javascript" src="templateProcessor.js"></script>
+<body>
+<div id="list"></div>
+<div id="table"></div>
+</body>
+<script type="text/javascript">
+    function test1(){
+        var res = template('#listTemplate', {array:[1,2,3,4]});
+        document.body.querySelector('#list').innerHTML = res;
+        console.log(res);
+    };
+    function test2(){
+        var res = template('#tableTemplate', {
+            matrix:[
+                [1,2,3,4],
+                [5,6,7,8],
+                [9,10,11,12]
+            ]
+        });
+        document.body.querySelector('#table').innerHTML = res;
+        console.log(res);
+    };
+    test1();
+    test2();
+</script>
+</html>
